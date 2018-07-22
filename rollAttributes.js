@@ -18,7 +18,7 @@ export function rollStandardScore() {
   const higher_three_d6 = pullAt(four_d6.indexOf(lowest_d6))(four_d6);
   return {
     constituents: higher_three_d6,
-    discarded: lowest_d6,
+    discarded: [lowest_d6],
   };
 }
 
