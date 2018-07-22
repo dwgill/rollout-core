@@ -47,35 +47,32 @@ const displayNetScoreConstraint = netScoreConstraint => {
 
 /**
  * Display a ScoreConstraint as a readable string.
- * @param {Constraints.ScoreConstraintType} scoreConstraint 
+ * @param {Constraints.ScoreConstraintType} scoreConstraint
  * @return {string} A readable string of the constraint
  */
 const displayScoreConstraint = scoreConstraint => {
-    const { numScoresLimit, numScores, scoreLimit, score } = scoreConstraint;
-    const numScoresLimitStr = limitStrs[numScoresLimit];
-    const scoreLimitStr = scoreLimitStrs[scoreLimit];
-    const numScoresStr = numScores === 1 ? (
-        nbs('1 score')
-    ) : (
-        nbs(`${numScores} scores`)
-    );
+  const { numScoresLimit, numScores, scoreLimit, score } = scoreConstraint;
+  const numScoresLimitStr = limitStrs[numScoresLimit];
+  const scoreLimitStr = scoreLimitStrs[scoreLimit];
+  const numScoresStr =
+    numScores === 1 ? nbs('1 score') : nbs(`${numScores} scores`);
 
-    return `${numScoresLimitStr} ${numScoresStr} ${score} ${scoreLimitStr}`;
-}
+  return `${numScoresLimitStr} ${numScoresStr} ${score} ${scoreLimitStr}`;
+};
 
 const dispatchDisplayFunctions = {
-    [Constraints.NET_MOD_CONSTRAINT]: displayNetModConstraint,
-    [Constraints.NET_SCORE_CONSTRAINT]: displayNetScoreConstraint,
-    [Constraints.SCORE_CONSTRAINT]: displayScoreConstraint,
+  [Constraints.NET_MOD_CONSTRAINT]: displayNetModConstraint,
+  [Constraints.NET_SCORE_CONSTRAINT]: displayNetScoreConstraint,
+  [Constraints.SCORE_CONSTRAINT]: displayScoreConstraint,
 };
 
 /**
  * Display a Constraint as a readable string, according to its kind
- * @param {Constraints.NetModConstraintType | Constraints.NetScoreConstraintType | Constraints.ScoreConstraintType} constraint 
+ * @param {Constraints.NetModConstraintType | Constraints.NetScoreConstraintType | Constraints.ScoreConstraintType} constraint
  * @return {string} A string representing the Constraint
  */
 const displayConstraint = constraint => {
-    return dispatchDisplayFunctions[constraint.kind](constraint);
-}
+  return dispatchDisplayFunctions[constraint.kind](constraint);
+};
 
 export default displayConstraint;

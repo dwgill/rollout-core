@@ -27,7 +27,12 @@ export const EXACTLY = 'EXACTLY';
  * @return {ScoreConstraintType} An object representing this score requirement
  * @example ScoreConstraint('AT_LEAST', 2, 'AT_LEAST', 15) => Colville classic requirement
  */
-export const ScoreConstraint = (numScoresLimit, numScores, scoreLimit, score) => ({
+export const ScoreConstraint = (
+  numScoresLimit,
+  numScores,
+  scoreLimit,
+  score,
+) => ({
   kind: SCORE_CONSTRAINT,
   numScoresLimit,
   numScores,
