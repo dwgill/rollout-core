@@ -10,6 +10,7 @@ import {
   ScoreConstraint,
   SCORE_CONSTRAINT,
 } from './ConstraintKinds';
+import { cartesian } from './util';
 
 describe('ConstraintKinds', () => {
   describe('ScoreConstraint', () => {
@@ -69,6 +70,3 @@ describe('ConstraintKinds', () => {
     });
   });
 });
-
-const f = (a, b) => [].concat(...a.map(d => b.map(e => [].concat(d, e))));
-const cartesian = (a, b, ...c) => (b ? cartesian(f(a, b), ...c) : a);

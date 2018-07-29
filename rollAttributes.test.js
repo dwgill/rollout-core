@@ -1,10 +1,11 @@
-import rollDice from './rollDice';
 import range from 'lodash/fp/range';
 import {
   rollAugmentedScore,
   rollClassicScore,
   rollStandardScore,
 } from './rollAttributes';
+import rollDice from './rollDice';
+import { cartesian } from './util';
 
 jest.mock('./rollDice');
 
@@ -99,6 +100,3 @@ describe('rollAttributes', () => {
     });
   });
 });
-
-const f = (a, b) => [].concat(...a.map(d => b.map(e => [].concat(d, e))));
-const cartesian = (a, b, ...c) => (b ? cartesian(f(a, b), ...c) : a);

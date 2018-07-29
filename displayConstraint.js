@@ -1,4 +1,4 @@
-import * as Constraints from './ConstraintKinds';
+import * as ConstraintKinds from './ConstraintKinds';
 
 const nbs_str = String.fromCharCode(160); // non-breaking space
 
@@ -10,20 +10,20 @@ const nbs_str = String.fromCharCode(160); // non-breaking space
 const nbs = str => str.replace(/ /g, nbs_str);
 
 const limitStrs = {
-  [Constraints.EXACTLY]: 'exactly',
-  [Constraints.AT_LEAST]: nbs('at least'),
-  [Constraints.AT_MOST]: nbs('at most'),
+  [ConstraintKinds.EXACTLY]: 'exactly',
+  [ConstraintKinds.AT_LEAST]: nbs('at least'),
+  [ConstraintKinds.AT_MOST]: nbs('at most'),
 };
 
 const scoreLimitStrs = {
-  [Constraints.EXACTLY]: 'exactly',
-  [Constraints.AT_LEAST]: nbs('or more'),
-  [Constraints.AT_MOST]: nbs('or less'),
+  [ConstraintKinds.EXACTLY]: 'exactly',
+  [ConstraintKinds.AT_LEAST]: nbs('or more'),
+  [ConstraintKinds.AT_MOST]: nbs('or less'),
 };
 
 /**
  * Display a NetModConstraint as a readable string.
- * @param {Constraints.NetModConstraintType} netModConstraint
+ * @param {ConstraintKinds.NetModConstraintType} netModConstraint
  * @return {string} A readable string of the constraint
  */
 const displayNetModConstraint = netModConstraint => {
@@ -35,7 +35,7 @@ const displayNetModConstraint = netModConstraint => {
 
 /**
  * Display a NetScoreConstraint as a readable string.
- * @param {Constraints.NetScoreConstraintType} netScoreConstraint
+ * @param {ConstraintKinds.NetScoreConstraintType} netScoreConstraint
  * @return {string} A readable string of the constraint
  */
 const displayNetScoreConstraint = netScoreConstraint => {
@@ -47,7 +47,7 @@ const displayNetScoreConstraint = netScoreConstraint => {
 
 /**
  * Display a ScoreConstraint as a readable string.
- * @param {Constraints.ScoreConstraintType} scoreConstraint
+ * @param {ConstraintKinds.ScoreConstraintType} scoreConstraint
  * @return {string} A readable string of the constraint
  */
 const displayScoreConstraint = scoreConstraint => {
@@ -61,14 +61,14 @@ const displayScoreConstraint = scoreConstraint => {
 };
 
 const dispatchDisplayFunctions = {
-  [Constraints.NET_MOD_CONSTRAINT]: displayNetModConstraint,
-  [Constraints.NET_SCORE_CONSTRAINT]: displayNetScoreConstraint,
-  [Constraints.SCORE_CONSTRAINT]: displayScoreConstraint,
+  [ConstraintKinds.NET_MOD_CONSTRAINT]: displayNetModConstraint,
+  [ConstraintKinds.NET_SCORE_CONSTRAINT]: displayNetScoreConstraint,
+  [ConstraintKinds.SCORE_CONSTRAINT]: displayScoreConstraint,
 };
 
 /**
  * Display a Constraint as a readable string, according to its kind
- * @param {Constraints.NetModConstraintType | Constraints.NetScoreConstraintType | Constraints.ScoreConstraintType} constraint
+ * @param {ConstraintKinds.NetModConstraintType | ConstraintKinds.NetScoreConstraintType | ConstraintKinds.ScoreConstraintType} constraint
  * @return {string} A string representing the Constraint
  */
 const displayConstraint = constraint => {

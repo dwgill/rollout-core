@@ -1,10 +1,10 @@
 import {
+  AT_LEAST,
+  AT_MOST,
+  EXACTLY,
   NetModConstraint,
   NetScoreConstraint,
   ScoreConstraint,
-  AT_MOST,
-  AT_LEAST,
-  EXACTLY,
 } from './ConstraintKinds';
 import displayConstraint from './displayConstraint';
 
