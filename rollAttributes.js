@@ -4,13 +4,7 @@ import { AUGMENTED, CLASSIC, STANDARD } from './AttributeRollKinds';
 import rollDice from './rollDice';
 
 /**
- * @typedef {object} Rollout
- * @prop {number[]} constituents
- * @prop {number[]} discarded
- */
-
-/**
- * @return {Rollout} A standard ability score roll of 4d6 drop 1.
+ * @return {AttributeRoll} A standard ability score roll of 4d6 drop 1.
  */
 export function rollStandardScore() {
   const four_d6 = rollDice(4);
@@ -23,7 +17,7 @@ export function rollStandardScore() {
 }
 
 /**
- * @return {Rollout} A classic ability score roll of 3d6.
+ * @return {AttributeRoll} A classic ability score roll of 3d6.
  */
 export function rollClassicScore() {
   return {
@@ -33,7 +27,7 @@ export function rollClassicScore() {
 }
 
 /**
- * @return {Rollout} An augmented ability score roll of 2d6 + 6.
+ * @return {AttributeRoll} An augmented ability score roll of 2d6 + 6.
  */
 export function rollAugmentedScore() {
   return {
@@ -47,3 +41,13 @@ export default {
   [CLASSIC]: rollClassicScore,
   [AUGMENTED]: rollAugmentedScore,
 };
+
+/**
+ * @typedef {object} AttributeRoll
+ * @prop {number[]} constituents
+ * @prop {number[]} discarded
+ */
+
+/**
+ * @typedef {AttributeRoll[]} Rollout
+ */

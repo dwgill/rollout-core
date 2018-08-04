@@ -1,3 +1,4 @@
+import times from 'lodash/fp/times';
 import {
   getNetModForRollout,
   getNetScoreForRollout,
@@ -14,6 +15,11 @@ import {
   NetScoreConstraint,
   ScoreConstraint,
 } from './ConstraintKinds';
+import {
+  rollAugmentedScore,
+  rollClassicScore,
+  rollStandardScore,
+} from './rollAttributes';
 
 /** Mimics a standard attribute score roll */
 const mockRollout1 = {
@@ -273,5 +279,64 @@ describe('checkConstraints', () => {
     expect(predicate1And2(mockRollout1.rollout)).toBeTruthy();
     expect(predicate1And2(mockRollout2.rollout)).toBeTruthy();
     expect(predicate1And2(mockRollout3.rollout)).toBeFalsy();
+  });
+});
+
+describe('checkConstraints integration', () => {
+  describe('rollAttributes', () => {
+    const constraintAllScores3OrMore = ScoreConstraint(
+      AT_LEAST,
+      6,
+      AT_LEAST,
+      3,
+    );
+    const constraintAllScores18OrUnder = ScoreConstraint(
+      AT_LEAST,
+      6,
+      AT_MOST,
+      18,
+    );
+    const constrantOneScore19 = ScoreConstraint(AT_LEAST, 1, EXACTLY, 19);
+    const predicatetAllScores3OrMore = makePredicateForConstraint(
+      constraintAllScores3OrMore,
+    );
+    const predicatetAllScores18OrUnder = makePredicateForConstraint(
+      constraintAllScores18OrUnder,
+    );
+    const predicateOneScore19 = makePredicateForConstraint(constrantOneScore19);
+    const predicateEvery = makePredicateForAllConstraints(
+      constraintAllScores18OrUnder,
+      constraintAllScores3OrMore,
+      constrantOneScore19,
+    );
+    const predicateAny = makePredicateForAnyConstraint(
+      constraintAllScores18OrUnder,
+      constraintAllScores3OrMore,
+      constrantOneScore19,
+    );
+    test('rollAugmentedScore', () => {
+      const rollout = times(rollAugmentedScore, 6);
+      expect(predicatetAllScores18OrUnder(rollout)).toBeTruthy();
+      expect(predicatetAllScores3OrMore(rollout)).toBeTruthy();
+      expect(predicateOneScore19(rollout)).toBeFalsy();
+      expect(predicateEvery(rollout)).toBeFalsy();
+      expect(predicateAny(rollout)).toBeTruthy();
+    });
+    test('rollClassicScore', () => {
+      const rollout = times(rollClassicScore, 6);
+      expect(predicatetAllScores18OrUnder(rollout)).toBeTruthy();
+      expect(predicatetAllScores3OrMore(rollout)).toBeTruthy();
+      expect(predicateOneScore19(rollout)).toBeFalsy();
+      expect(predicateEvery(rollout)).toBeFalsy();
+      expect(predicateAny(rollout)).toBeTruthy();
+    });
+    test('rollStandardScore', () => {
+      const rollout = times(rollStandardScore, 6);
+      expect(predicatetAllScores18OrUnder(rollout)).toBeTruthy();
+      expect(predicatetAllScores3OrMore(rollout)).toBeTruthy();
+      expect(predicateOneScore19(rollout)).toBeFalsy();
+      expect(predicateEvery(rollout)).toBeFalsy();
+      expect(predicateAny(rollout)).toBeTruthy();
+    });
   });
 });
