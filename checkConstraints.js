@@ -4,7 +4,7 @@ import map from 'lodash/fp/map';
 import sum from 'lodash/fp/sum';
 import calculateModifier from './calculateModifier';
 import * as ConstraintKinds from './ConstraintKinds';
-import * as rollAttributes from './rollAttributes';
+import * as rollAttributes from './rollAttributes'; // eslint-disable-line no-unused-vars
 
 /**
  * @typedef {function(rollAttributes.Rollout): boolean} ConstraintPredicate
