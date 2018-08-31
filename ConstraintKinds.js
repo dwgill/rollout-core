@@ -8,6 +8,7 @@ export const NET_SCORE_CONSTRAINT = 'NET_SCORE_CONSTRAINT';
 export const AT_LEAST = 'AT_LEAST';
 export const AT_MOST = 'AT_MOST';
 export const EXACTLY = 'EXACTLY';
+export const limits = [AT_LEAST, AT_MOST, EXACTLY];
 
 /**
  * @typedef {object} ScoreConstraintType
