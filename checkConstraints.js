@@ -113,7 +113,6 @@ const dispatchMakePredicateForConstraint = {
  * @returns {ConstraintPredicate}
  */
 export function makePredicateForConstraint(constraint) {
-  console.log('constraint', constraint)
   return dispatchMakePredicateForConstraint[constraint.kind](constraint);
 }
 
