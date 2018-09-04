@@ -1,7 +1,7 @@
 import times from 'lodash/fp/times';
-import * as AttributeRollKinds from './AttributeRollKinds'; // eslint-disable-line no-unused-vars
+import * as AttributeRollKinds from './AttributeRollKinds';
 import { makePredicateForAllConstraints } from './checkConstraints';
-import * as ConstraintKinds from './ConstraintKinds'; // eslint-disable-line no-unused-vars
+import * as ConstraintKinds from './ConstraintKinds';
 import rollAttributes from './rollAttributes';
 
 /** @typedef {ConstraintKinds.NetModConstraintType | ConstraintKinds.NetScoreConstraintType | ConstraintKinds.ScoreConstraintType} Constraint*/
